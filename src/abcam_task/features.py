@@ -84,11 +84,11 @@ class LetterCompositionTransformer(TransformerMixin):
         """
 
         seq_lengths = X.str.len().replace(0,1) # length of sequence for each row 
+        # replace(0,1) to avoid division by 0
    
         letter_count = {aa: X.str.count(aa) for aa in AMINOACIDS} 
         letter_count_df = pd.DataFrame(letter_count)
 
         freq_df = letter_count_df.div(seq_lengths, axis=0) # element wise division in each row
-        # possible division by 0
 
         return freq_df.to_numpy(dtype=np.float32)

@@ -40,7 +40,7 @@ class TestOneHotLetterVectorTransformer:
         # Longest sequence is "ACDEFGH" (length 7)
         assert transformer.max_len == 7
         assert isinstance(transformer.max_len, int)
-        assert fitted_transformer is transformer  # Returns self for chaining
+        assert fitted_transformer is transformer  # Returns self 
 
     def test_transform_before_fit_raises_error(self, sample_sequences):
         """Tests that invoking transform before fit raises a RuntimeError."""

@@ -5,8 +5,7 @@ class FeatureGeneratePipeline:
     """Pipeline  that generates new feature vectors from CSV datasets.
 
     Attributes:
-        one_hot_transformer (OneHotLetterVectorTransformer): One-hot vector transformer instance.
-        comp_transformer (LetterCompositionTransformer): letter composition transformer instance.
+        transformers (list): List of feature transformer instances
     """
 
     def __init__(self):
