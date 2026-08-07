@@ -1,0 +1,30 @@
+[project]
+name = "abcam-task"
+version = "0.1.0"
+description = "Take home task implementation"
+readme = "README.md"
+authors = [
+    { name = "maria", email = "mariatreesaa@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.4.6",
+    "pandas>=3.0.5",
+    "pyarrow>=25.0.0",
+    "scikit-learn>=1.9.0",
+]
+
+[project.scripts]
+generate-features = "abcam_task.main:main"
+
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/abcam_task"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
