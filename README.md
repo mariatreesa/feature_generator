@@ -13,24 +13,24 @@ A  Python library with tools that extracts feature vectors from amino acid seque
 Clone the repository and install dependencies using `uv`:
 
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/mariatreesa/feature_generator.git
+cd abcam_task
 uv sync
 ```
 
 Run the following from cli to generate features and save then as parquet.
 
-'''bash
+```bash
 uv run python main.py --input data/uniprot_sequences.csv --output new_features.parquet
 ```
 or
 
-```
+```bash
 uv run generate-features --input ../uniport_sequences.csv --output ../test_output.parquet   
 ```
 
 To run tests
 
-```
+```bash
 uv run pytest
 ```
