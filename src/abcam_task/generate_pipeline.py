@@ -11,8 +11,11 @@ class FeatureGeneratePipeline:
 
     def __init__(self):
 
-        self.one_hot_transformer = OneHotLetterVectorTransformer()
-        self.comp_transformer = LetterCompositionTransformer()
+
+        self.transformes = [
+            ("one_hot", OneHotLetterVectorTransformer()),
+            ("letter_comp", LetterCompositionTransformer())
+        ]
 
 
     def run_pipeline(self, input_path: str):
@@ -44,15 +47,13 @@ class FeatureGeneratePipeline:
         uniprot_df["Sequence"] = uniprot_df["Sequence"].str.upper()
 
         sequences = uniprot_df["Sequence"]
+        feature_dict = {"ID": uniprot_df["ID"].values}
 
-        one_hot_matrix = self.one_hot_transformer.fit_transform(sequences)
-        letter_comp_matrix = self.comp_transformer.fit_transform(sequences)
+        for name, transformer in self.transformes:
+            transformed_feature = transformer.fit_transform(sequences)
+            feature_dict[name] = list(transformed_feature) # convert to 1D array
 
-        # output dataframe with 'ID' as first column and the new feature vectors in next 2 columns
-        new_feature_df = pd.DataFrame({
-                "ID": uniprot_df["ID"].values,
-                "one_hot": list(one_hot_matrix),     
-                "letter_comp": list(letter_comp_matrix)
-            })
+        # output dataframe with 'ID' as first column and the new feature vectors in next  columns
+        new_feature_df = pd.DataFrame(feature_dict)
 
         return new_feature_df
