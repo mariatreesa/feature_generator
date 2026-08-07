@@ -21,12 +21,12 @@ uv sync
 Run the following from cli to generate features and save then as parquet.
 
 ```bash
-uv run python main.py --input data/uniprot_sequences.csv --output new_features.parquet
+uv run python main.py --input path/to/uniprot_sequences.csv --output path/to/new_features.parquet
 ```
 or
 
 ```bash
-uv run generate-features --input ../uniport_sequences.csv --output ../test_output.parquet   
+uv run generate-features --input path/to/uniport_sequences.csv --output path/to/new_features.parquet
 ```
 
 To run tests
